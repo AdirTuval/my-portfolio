@@ -1,0 +1,181 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const experience = [
+  {
+    role: 'Software Engineer',
+    org: 'Acme Corp',
+    dates: '2023 — Present',
+    description:
+      'Built and maintained full-stack features for a SaaS platform serving thousands of users. Improved API response times by 40% through query optimization and caching.',
+  },
+  {
+    role: 'Junior Developer',
+    org: 'Startup XYZ',
+    dates: '2021 — 2023',
+    description:
+      'Developed React components and REST APIs for a fintech product. Collaborated closely with design and product teams in an agile environment.',
+  },
+];
+
+const education = [
+  {
+    role: 'B.Sc. Computer Science',
+    org: 'University of Example',
+    dates: '2018 — 2022',
+    description: 'Graduated with honors. Focused on algorithms, systems programming, and machine learning.',
+  },
+];
+---
+
+<Layout title="CV — Adir Tuval">
+  <main>
+    <div class="header">
+      <h1>CV</h1>
+      <a href="#" class="download-btn">Download CV ↓</a>
+    </div>
+
+    <section>
+      <h2>Experience</h2>
+      <div class="timeline">
+        {experience.map((entry) => (
+          <article class="entry">
+            <div class="entry-meta">
+              <span class="dates">{entry.dates}</span>
+            </div>
+            <div class="entry-body">
+              <h3>{entry.role}</h3>
+              <span class="org">{entry.org}</span>
+              <p>{entry.description}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section>
+      <h2>Education</h2>
+      <div class="timeline">
+        {education.map((entry) => (
+          <article class="entry">
+            <div class="entry-meta">
+              <span class="dates">{entry.dates}</span>
+            </div>
+            <div class="entry-body">
+              <h3>{entry.role}</h3>
+              <span class="org">{entry.org}</span>
+              <p>{entry.description}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin: 0;
+    color: var(--text);
+  }
+
+  .download-btn {
+    display: inline-block;
+    padding: 0.5rem 1.2rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: background-color 0.2s, color 0.2s;
+  }
+
+  .download-btn:hover {
+    background-color: var(--accent);
+    color: #fff;
+  }
+
+  section {
+    margin-bottom: 3rem;
+  }
+
+  h2 {
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .entry {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 1.5rem;
+  }
+
+  .entry-meta {
+    padding-top: 0.15rem;
+  }
+
+  .dates {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+
+  .entry-body h3 {
+    margin: 0 0 0.2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .org {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+
+  .entry-body p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  @media (max-width: 560px) {
+    .entry {
+      grid-template-columns: 1fr;
+      gap: 0.4rem;
+    }
+  }
+</style>

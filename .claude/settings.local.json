@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find /home/adirt/projects/my-portfolio -name \"*.css\" -o -name \"*.scss\" -o -name \"*.less\" 2>/dev/null | grep -v node_modules)",
+      "Bash(pnpm astro check 2>&1)",
+      "Bash(pnpm build 2>&1)"
+    ]
+  }
+}

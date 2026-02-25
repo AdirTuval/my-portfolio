@@ -1,0 +1,79 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="About — Adir Tuval">
+  <main>
+    <section class="content">
+      <h1>About</h1>
+
+      <p class="bio">
+        Hey, I'm Adir — a developer who enjoys building things on the web and beyond.
+        I care about clean code, thoughtful interfaces, and tools that feel good to use.
+        When I'm not coding, I'm probably tinkering with side projects or reading about
+        systems design.
+      </p>
+
+      <h2>Stack</h2>
+      <ul class="stack">
+        <li>TypeScript &amp; JavaScript</li>
+        <li>React / Astro</li>
+        <li>Node.js</li>
+        <li>Python</li>
+        <li>SQL &amp; PostgreSQL</li>
+        <li>Docker &amp; Linux</li>
+        <li>Git</li>
+      </ul>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  main {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+  }
+
+  .content h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin: 0 0 1.5rem;
+    color: var(--text);
+  }
+
+  .bio {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin: 0 0 2.5rem;
+  }
+
+  h2 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 1rem;
+  }
+
+  .stack {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .stack li {
+    padding: 0.6rem 1rem;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text);
+    font-size: 0.95rem;
+  }
+</style>
