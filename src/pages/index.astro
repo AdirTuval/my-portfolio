@@ -1,10 +1,23 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Adir Tuval',
+  url: 'https://adirtuval.com',
+  jobTitle: 'Algorithm Developer',
+  worksFor: { '@type': 'Organization', name: 'Mobileye' },
+  alumniOf: { '@type': 'CollegeOrUniversity', name: 'Hebrew University of Jerusalem' },
+  knowsAbout: ['Python', 'C++', 'Machine Learning', 'Computer Vision', 'Autonomous Driving'],
+  sameAs: ['https://github.com/AdirTuval'],
+};
 ---
 
-<Layout title="Adir Tuval">
+<Layout title="Adir Tuval — Algorithm Developer & CS Student" description="Adir Tuval — Algorithm developer at Mobileye and CS graduate student at Hebrew University. Building autonomous driving systems, ML pipelines, and open-source tools." schema={personSchema}>
   <main>
     <section class="hero">
+      <h1 class="sr-only">Adir Tuval — Algorithm Developer & CS Student</h1>
       <div class="ascii-name" aria-label="Adir Tuval">
         <pre class="glitch-target">{`
  █████╗ ██████╗ ██╗██████╗
@@ -160,6 +173,18 @@ import Layout from '../layouts/Layout.astro';
     color: var(--accent);
     text-shadow: 0 0 7px var(--accent);
     background-color: rgba(0, 255, 65, 0.05);
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
   }
 
   @media (max-width: 600px) {
