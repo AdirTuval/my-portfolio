@@ -4,14 +4,24 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout title="Adir Tuval">
   <main>
-    <div class="glow" aria-hidden="true"></div>
     <section class="hero">
-      <p class="eyebrow">Hi, I'm</p>
-      <h1 class="name">Adir Tuval</h1>
-      <p class="subtitle">Developer &amp; maker of things.</p>
-      <div class="cta">
-        <a href="/projects" class="btn-primary">View Projects →</a>
-        <a href="/about" class="btn-ghost">About me</a>
+      <div class="ascii-name" aria-label="Adir Tuval">
+        <pre class="glitch-target">{`
+ █████╗ ██████╗ ██╗██████╗
+██╔══██╗██╔══██╗██║██╔══██╗
+███████║██║  ██║██║██████╔╝
+██╔══██║██║  ██║██║██╔══██╗
+██║  ██║██████╔╝██║██║  ██║
+╚═╝  ╚═╝╚═════╝ ╚═╝╚═╝  ╚═╝`}</pre>
+      </div>
+
+      <div class="subtitle-wrap">
+        <span class="subtitle">&gt; algorithm developer &amp; cs student</span>
+      </div>
+
+      <div class="cta boot-4">
+        <a href="/projects" class="cmd">$ cat projects</a>
+        <a href="/about" class="cmd">$ whoami</a>
       </div>
     </section>
   </main>
@@ -25,101 +35,136 @@ import Layout from '../layouts/Layout.astro';
     justify-content: center;
     min-height: calc(100dvh - var(--nav-height));
     overflow: hidden;
-    text-align: center;
     padding: 2rem;
   }
 
-  .glow {
-    position: absolute;
-    top: -200px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 700px;
-    height: 500px;
-    background: radial-gradient(ellipse at center, var(--accent-glow) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
   .hero {
-    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    gap: 1.5rem;
   }
 
-  .eyebrow {
+  /* Boot sequence */
+  .ascii-name,
+  .subtitle-wrap,
+  .cta {
+    opacity: 0;
+    transform: translateY(12px);
+    animation: boot-in 0.5s ease forwards;
+  }
+
+  .ascii-name { animation-delay: 0.2s; }
+  .subtitle-wrap { animation-delay: 0.7s; }
+  .cta { animation-delay: 1.2s; }
+
+  @keyframes boot-in {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* ASCII Art Name */
+  .ascii-name pre {
     margin: 0;
-    font-size: 1.25rem;
-    color: var(--text-muted);
-    font-weight: 400;
+    font-size: clamp(0.35rem, 1.8vw, 0.85rem);
+    line-height: 1.2;
+    color: var(--accent);
+    text-shadow: 0 0 10px var(--accent), 0 0 25px rgba(0, 255, 65, 0.3);
+    text-align: center;
+    cursor: default;
   }
 
-  .name {
-    margin: 0;
-    font-size: clamp(3rem, 10vw, 6rem);
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    line-height: 1.05;
-    background: linear-gradient(135deg, #a5b4fc, var(--accent), #818cf8, #c7d2fe);
-    background-size: 300% 300%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: gradient-shift 6s ease infinite;
+  /* Glitch effect on hover */
+  .glitch-target {
+    position: relative;
   }
 
-  @keyframes gradient-shift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+  .ascii-name:hover .glitch-target {
+    animation: glitch 0.3s steps(3) 1;
+  }
+
+  @keyframes glitch {
+    0% {
+      text-shadow: 0 0 10px var(--accent), 0 0 25px rgba(0, 255, 65, 0.3);
+      clip-path: inset(0 0 0 0);
+    }
+    20% {
+      text-shadow: -3px 0 #ff0000, 3px 0 #00ffff, 0 0 10px var(--accent);
+      clip-path: inset(20% 0 40% 0);
+    }
+    40% {
+      text-shadow: 3px 0 #ff0000, -3px 0 #00ffff, 0 0 10px var(--accent);
+      clip-path: inset(60% 0 10% 0);
+    }
+    60% {
+      text-shadow: -2px 0 #ff0000, 2px 0 #00ffff, 0 0 10px var(--accent);
+      clip-path: inset(10% 0 70% 0);
+    }
+    80% {
+      text-shadow: 2px 0 #ff0000, -2px 0 #00ffff, 0 0 10px var(--accent);
+      clip-path: inset(50% 0 20% 0);
+    }
+    100% {
+      text-shadow: 0 0 10px var(--accent), 0 0 25px rgba(0, 255, 65, 0.3);
+      clip-path: inset(0 0 0 0);
+    }
+  }
+
+  /* Typewriter subtitle */
+  .subtitle-wrap {
+    overflow: hidden;
   }
 
   .subtitle {
-    margin: 0.25rem 0 0;
-    font-size: 1.2rem;
-    color: var(--text-muted);
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid var(--accent);
+    width: 0;
+    animation:
+      typing 2s steps(34) 0.8s forwards,
+      blink 0.7s step-end infinite 0.8s;
+    color: var(--accent-secondary);
+    font-size: 1rem;
   }
 
+  @keyframes typing {
+    to { width: 100%; }
+  }
+
+  @keyframes blink {
+    50% { border-color: transparent; }
+  }
+
+  /* CTA Links */
   .cta {
     display: flex;
-    gap: 1rem;
-    margin-top: 1rem;
+    gap: 1.5rem;
     flex-wrap: wrap;
     justify-content: center;
   }
 
-  .btn-primary {
-    display: inline-block;
-    padding: 0.65rem 1.5rem;
-    border-radius: var(--radius);
-    background-color: var(--accent);
-    color: #fff;
-    text-decoration: none;
-    font-size: 0.95rem;
-    font-weight: 500;
-    transition: opacity 0.2s, transform 0.2s;
-  }
-
-  .btn-primary:hover {
-    opacity: 0.9;
-    transform: translateY(-1px);
-  }
-
-  .btn-ghost {
-    display: inline-block;
-    padding: 0.65rem 1.5rem;
-    border-radius: var(--radius);
+  .cmd {
+    padding: 0.5rem 1.2rem;
     border: 1px solid var(--border);
     color: var(--text);
     text-decoration: none;
-    font-size: 0.95rem;
-    font-weight: 500;
-    transition: border-color 0.2s, transform 0.2s;
+    font-size: 0.9rem;
+    transition: border-color 0.2s, color 0.2s, text-shadow 0.2s, background-color 0.2s;
   }
 
-  .btn-ghost:hover {
+  .cmd:hover {
     border-color: var(--accent);
-    transform: translateY(-1px);
+    color: var(--accent);
+    text-shadow: 0 0 7px var(--accent);
+    background-color: rgba(0, 255, 65, 0.05);
+  }
+
+  @media (max-width: 600px) {
+    .ascii-name pre {
+      font-size: clamp(0.25rem, 4vw, 0.55rem);
+    }
   }
 </style>

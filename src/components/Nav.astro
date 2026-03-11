@@ -2,14 +2,15 @@
 const pathname = Astro.url.pathname;
 
 const links = [
-  { href: '/about', label: 'About' },
-  { href: '/cv', label: 'CV' },
-  { href: '/projects', label: 'Projects' },
+  { href: '/about', label: 'about' },
+  { href: '/cv', label: 'cv' },
+  { href: '/projects', label: 'projects' },
+  { href: '/contact', label: 'contact' },
 ];
 ---
 
 <nav>
-  <a href="/" class="logo">Adir Tuval</a>
+  <a href="/" class="logo">>_ adir_tuval</a>
   <ul>
     {links.map(({ href, label }) => (
       <li>
@@ -31,23 +32,21 @@ const links = [
     justify-content: space-between;
     padding: 0 2rem;
     height: var(--nav-height);
-    background-color: rgba(10, 10, 15, 0.85);
-    backdrop-filter: blur(12px);
+    background-color: var(--bg);
     border-bottom: 1px solid var(--border);
-    box-shadow: 0 1px 0 0 var(--accent-glow);
   }
 
   .logo {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--text);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--accent);
     text-decoration: none;
-    letter-spacing: -0.01em;
-    transition: color 0.2s;
+    text-shadow: 0 0 7px var(--accent);
+    transition: text-shadow 0.2s;
   }
 
   .logo:hover {
-    color: var(--accent);
+    text-shadow: 0 0 12px var(--accent), 0 0 25px rgba(0, 255, 65, 0.4);
   }
 
   ul {
@@ -60,22 +59,52 @@ const links = [
 
   ul a {
     display: block;
-    padding: 0.4rem 0.85rem;
-    border-radius: 6px;
+    padding: 0.4rem 0.6rem;
     color: var(--text-muted);
     text-decoration: none;
     font-size: 0.9rem;
-    transition: color 0.2s, background-color 0.2s;
+    transition: color 0.15s, text-shadow 0.15s;
+    position: relative;
+  }
+
+  ul a::before {
+    content: '[';
+    opacity: 0;
+    transition: opacity 0.15s;
+  }
+
+  ul a::after {
+    content: ']';
+    opacity: 0;
+    transition: opacity 0.15s;
+  }
+
+  ul a:hover::before,
+  ul a:hover::after,
+  ul a.active::before,
+  ul a.active::after {
+    opacity: 1;
   }
 
   ul a:hover {
     color: var(--text);
-    background-color: var(--surface);
+  }
+
+  @keyframes nav-glitch {
+    0% { clip-path: inset(0 0 0 0); }
+    25% { clip-path: inset(0 0 0 -3px); }
+    50% { clip-path: inset(0 -2px 0 0); }
+    75% { clip-path: inset(0 0 0 2px); }
+    100% { clip-path: inset(0 0 0 0); }
+  }
+
+  ul a:hover {
+    animation: nav-glitch 0.15s steps(4);
   }
 
   ul a.active {
     color: var(--accent);
-    background-color: rgba(99, 102, 241, 0.1);
+    text-shadow: 0 0 7px var(--accent);
   }
 
   @media (max-width: 768px) {
