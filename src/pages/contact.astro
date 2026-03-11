@@ -1,0 +1,136 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const contacts = [
+  {
+    label: 'GitHub',
+    href: 'https://github.com/AdirTuval',
+    external: true,
+  },
+  {
+    label: 'Email',
+    href: '#',
+    external: false,
+  },
+  {
+    label: 'LinkedIn',
+    href: '#',
+    external: false,
+  },
+];
+---
+
+<Layout title="Contact — Adir Tuval">
+  <main>
+    <h1><span class="prompt">ping</span> adir_tuval</h1>
+    <p class="lead">&gt; resolving contact endpoints…</p>
+
+    <ul class="contact-list">
+      {contacts.map((contact, i) => (
+        <li class="flicker-in" style={`--delay: ${0.1 + i * 0.2}s`}>
+          <a
+            href={contact.href}
+            target={contact.external ? '_blank' : undefined}
+            rel={contact.external ? 'noopener noreferrer' : undefined}
+            class="contact-link"
+          >
+            <span class="prefix">&gt;</span>
+            <span class="label">{contact.label}</span>
+            <span class="url">{contact.href === '#' ? '—' : contact.href}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </main>
+</Layout>
+
+<style>
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem;
+    color: var(--text);
+  }
+
+  .prompt {
+    color: var(--accent);
+    text-shadow: 0 0 7px var(--accent);
+  }
+
+  .lead {
+    margin: 0 0 3rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+  }
+
+  .contact-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  /* Flicker-in */
+  .flicker-in {
+    opacity: 0;
+    animation: flicker-in 0.4s ease forwards;
+    animation-delay: var(--delay, 0s);
+  }
+
+  @keyframes flicker-in {
+    0% { opacity: 0; }
+    10% { opacity: 0.4; }
+    20% { opacity: 0.1; }
+    30% { opacity: 0.6; }
+    50% { opacity: 0.3; }
+    70% { opacity: 0.8; }
+    100% { opacity: 1; }
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border);
+    background-color: var(--surface);
+    text-decoration: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+
+  .contact-link:hover {
+    border-color: var(--accent);
+    box-shadow: 0 0 15px rgba(0, 255, 65, 0.1), 0 0 30px rgba(0, 255, 65, 0.05);
+  }
+
+  .prefix {
+    color: var(--accent);
+    font-weight: 700;
+    text-shadow: 0 0 7px var(--accent);
+  }
+
+  .label {
+    color: var(--text);
+    font-weight: 700;
+    font-size: 0.9rem;
+    min-width: 80px;
+  }
+
+  .url {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+  }
+
+  .contact-link:hover .label {
+    color: var(--accent);
+    text-shadow: 0 0 7px var(--accent);
+  }
+</style>

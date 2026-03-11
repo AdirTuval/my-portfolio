@@ -5,24 +5,28 @@ import Layout from '../layouts/Layout.astro';
 <Layout title="About — Adir Tuval">
   <main>
     <section class="content">
-      <h1>About</h1>
+      <h1><span class="prompt">whoami</span></h1>
 
       <p class="bio">
-        Hey, I'm Adir — a developer who enjoys building things on the web and beyond.
-        I care about clean code, thoughtful interfaces, and tools that feel good to use.
-        When I'm not coding, I'm probably tinkering with side projects or reading about
-        systems design.
+        Hey, I'm Adir — an algorithm developer at Mobileye and CS grad student
+        at Hebrew University. I work on autonomous driving perception systems by
+        day and study machine learning by night. I care about clean code,
+        efficient algorithms, and building things that work well.
       </p>
 
-      <h2>Stack</h2>
+      <h2>$ ls skills/</h2>
       <ul class="stack">
-        <li>TypeScript &amp; JavaScript</li>
-        <li>React / Astro</li>
-        <li>Node.js</li>
-        <li>Python</li>
-        <li>SQL &amp; PostgreSQL</li>
-        <li>Docker &amp; Linux</li>
-        <li>Git</li>
+        <li><span class="tree">├──</span> Python <span class="detail">(NumPy, Pandas, PyTorch)</span></li>
+        <li><span class="tree">├──</span> C++ / C <span class="detail">(Advanced OOP, Systems)</span></li>
+        <li><span class="tree">├──</span> Linux <span class="detail">(Bash, Shell Scripting)</span></li>
+        <li><span class="tree">├──</span> Algorithms <span class="detail">(ML, Computer Vision)</span></li>
+        <li><span class="tree">└──</span> Git <span class="detail">(Version Control)</span></li>
+      </ul>
+
+      <h2>$ cat languages.txt</h2>
+      <ul class="stack">
+        <li><span class="tree">├──</span> Hebrew <span class="detail">[native]</span></li>
+        <li><span class="tree">└──</span> English <span class="detail">[fluent]</span></li>
       </ul>
     </section>
   </main>
@@ -36,44 +40,55 @@ import Layout from '../layouts/Layout.astro';
   }
 
   .content h1 {
-    font-size: 2.5rem;
+    font-size: 1.5rem;
     font-weight: 700;
-    letter-spacing: -0.03em;
     margin: 0 0 1.5rem;
     color: var(--text);
   }
 
+  .prompt {
+    color: var(--accent);
+    text-shadow: 0 0 7px var(--accent);
+  }
+
   .bio {
-    font-size: 1.05rem;
+    font-size: 0.95rem;
     color: var(--text-muted);
     line-height: 1.8;
     margin: 0 0 2.5rem;
+    padding-left: 1rem;
+    border-left: 2px solid var(--accent);
   }
 
   h2 {
-    font-size: 1.1rem;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: var(--accent);
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--accent-secondary);
     margin: 0 0 1rem;
   }
 
   .stack {
     list-style: none;
-    margin: 0;
+    margin: 0 0 2rem;
     padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.35rem;
   }
 
   .stack li {
-    padding: 0.6rem 1rem;
-    background-color: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
+    padding: 0.4rem 0;
     color: var(--text);
-    font-size: 0.95rem;
+    font-size: 0.9rem;
+  }
+
+  .tree {
+    color: var(--border);
+    margin-right: 0.5rem;
+  }
+
+  .detail {
+    color: var(--text-muted);
+    font-size: 0.8rem;
   }
 </style>
