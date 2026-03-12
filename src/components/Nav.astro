@@ -11,6 +11,7 @@ const links = [
 
 <nav>
   <a href="/" class="logo">>_ adir_tuval</a>
+  <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">[=]</button>
   <ul>
     {links.map(({ href, label }) => (
       <li>
@@ -26,7 +27,7 @@ const links = [
   nav {
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 10000;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -107,16 +108,61 @@ const links = [
     text-shadow: 0 0 7px var(--accent);
   }
 
+  .nav-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    color: var(--accent);
+    font-family: inherit;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0.4rem;
+    transition: text-shadow 0.2s;
+  }
+
+  .nav-toggle:hover {
+    text-shadow: 0 0 7px var(--accent);
+  }
+
   @media (max-width: 768px) {
+    .nav-toggle {
+      display: block;
+    }
+
     nav {
-      flex-direction: column;
+      flex-wrap: wrap;
       height: auto;
       padding: 1rem;
-      gap: 0.75rem;
     }
 
     ul {
+      display: none;
+      width: 100%;
+      flex-direction: column;
       gap: 0.15rem;
+    }
+
+    ul.open {
+      display: flex;
+    }
+
+    ul a {
+      padding: 0.6rem 0.8rem;
+    }
+
+    ul a::before,
+    ul a::after {
+      opacity: 1;
     }
   }
 </style>
+
+<script>
+  const toggle = document.querySelector('.nav-toggle');
+  const menu = document.querySelector('nav ul');
+  toggle?.addEventListener('click', () => {
+    const isOpen = menu?.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', String(isOpen));
+    toggle.textContent = isOpen ? '[x]' : '[=]';
+  });
+</script>
