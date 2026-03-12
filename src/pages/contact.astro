@@ -127,6 +127,10 @@ const contacts = [
   .url {
     color: var(--text-muted);
     font-size: 0.8rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
   }
 
   .contact-link:hover .label {
